@@ -1,0 +1,14 @@
+## visualization of learning data in 3 groups
+
+new_EXP_DATA_subset <- subset(new_EXP_DATA, Repetition_Condition %in% c("No Repetition"))
+plt <- ggplot(new_EXP_DATA_subset, aes(y=ET, x=cycle, group=Group, color=Group)) +
+  theme_classic()+
+  ylab("ET (ms)") + xlab("Cycle")+
+  theme(axis.title.x = element_text(color="black", size=20), 
+  axis.title.y = element_text(color="black", size=20),text = element_text(size=20,color="black")) + 
+  theme(axis.text.x = element_text(size=20),axis.text.y = element_text(size=20))+ 
+  scale_color_manual(values=c("blue", "deeppink","green4")) + 
+  stat_summary(fun = 'mean', geom = 'line') +  
+  stat_smooth(method="loess")
+  #facet_wrap(~Group) 
+plt + coord_cartesian(ylim = c(1500, 2300))
