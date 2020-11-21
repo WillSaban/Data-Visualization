@@ -1,0 +1,24 @@
+## R
+### figure for slope differences, including individual data points in each group.
+
+## calculate the slopes for each individual 
+mysub <- unique(new_EXP_DATA$Participant_Public_ID)
+mynewdata <- setNames ( data.frame (  matrix(NaN, ncol = 3, nrow = length(mysub)) ), c('Participant_Public_ID', 'Group', 'Slope'))
+
+for(si in 1:length(mysub)){
+  idx <- new_EXP_DATA$Participant_Public_ID == mysub[si]
+  mynewdata$Slope[si] <- coef(lm( log(RT) ~ Sum  , data=new_EXP_DATA[idx,]))[2]
+  mynewdata$Group[si] <- unique( new_EXP_DATA$Group[idx] )
+  mynewdata$Participant_Public_ID[si] <- unique( new_EXP_DATA$Participant_Public_ID[idx] )
+}
+
+## visualization of slopes
+plt7 <- ggplot(data = mynewdata, aes(y=Slope, x= Group, group= Group , color=Group))+
+  xlab("") +
+  geom_point()+
+  theme(legend.position="top") + 
+  theme(axis.title.x = element_text(color="black", size=20), axis.title.y = element_text(color="black", size=20),
+  text = element_text(size=20,color="black")) + 
+  scale_color_manual(values=c("blue", "deeppink","green4")) + 
+  stat_summary(fun = 'mean', geom = 'bar',alpha = .5) 
+plt7  + coord_cartesian(ylim = c(.02, .06)) 
