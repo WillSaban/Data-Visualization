@@ -1,5 +1,7 @@
+# R
 ## visualization of learning data in 3 groups
 
+library(ggplot2)
 new_EXP_DATA_subset <- subset(new_EXP_DATA, Repetition_Condition %in% c("No Repetition"))
 plt <- ggplot(new_EXP_DATA_subset, aes(y=ET, x=cycle, group=Group, color=Group)) +
   theme_classic()+
