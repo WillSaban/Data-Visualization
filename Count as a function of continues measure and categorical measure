@@ -1,0 +1,16 @@
+## Python
+
+import xlrd
+from matplotlib.pyplot import figure
+
+data=pd.read_excel(r'*******.xlsx', index_col=None) 
+
+fig0=figure(num=None, figsize=(8, 4), dpi=360, facecolor='w', edgecolor='black')
+d=sns.barplot(y='Count', x= 'Year', hue='Method', data= data, capsize=.05, ci=68,palette={"Neuropsychological":"green", "fMRI":"deeppink"})
+d.legend(title='', loc='upper right')
+d.grid(False)
+d.set(ylim=(0,50000))
+fig0.get_axes()[0].set_xlabel("Year",size=12)
+d.set_xticklabels(d.get_xticklabels(), rotation=45)
+fig0.get_axes()[0].set_ylabel("Count",size=12)
+fig0.savefig('Number of results as a function of year and research method.png')
