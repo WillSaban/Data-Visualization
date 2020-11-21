@@ -1,6 +1,7 @@
 ## R 
 ### visualiation of learning curves for 2*3 desing (2 Repetition_Condition in 3 groups).
 
+library(ggplot2)
 plt <- ggplot(new_EXP_DATA, aes(y=ET, x=cycle, group=interaction(Repetition_Condition,Group), color=Repetition_Condition, fill=Repetition_Condition))+
   theme_classic()+ylab("ET (ms)")+
   theme(legend.position="top") + theme(legend.title = element_blank())+
