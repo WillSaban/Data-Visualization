@@ -1,0 +1,17 @@
+
+fig = plt.figure(figsize=(12,12))
+ax = fig.add_subplot(projection='3d')
+ax.scatter(x[:50,0],x[:50,1],x[:50,2],color='red',s=90)
+ax.scatter(x[50:100,0],x[50:100,1],x[50:100,2],color='green',s=90)
+ax.scatter(x[100:150,0],x[100:150,1],x[100:150,2],color='blue',s=90)
+ax.set_xlabel('Memory', fontsize=20)
+ax.set_ylabel('Attention', fontsize=20)
+ax.set_zlabel('Executive functions', fontsize=20)
+ax.legend(['Profile 1','Profile 2', 'Profile 3' ], loc=[.35, .75], fontsize=16)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12) 
+
+ax.set_xticklabels([-3,-2,-1,0,1,2,3,4])
+ax.set_yticklabels([-3,-2,-1,0,1,2,3,4])
+ax.set_zticklabels([-3,-2,-1,0,1,2,3,4])
+plt.show()
